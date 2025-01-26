@@ -14,10 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::prefix('v1')->group(function () {
     Route::apiResource('products', 'App\Http\Controllers\ProductController');
+});
+
+Route::prefix('v1')->group(function () {
+    Route::apiResource('mahasiswas', 'App\Http\Controllers\MahasiswaController');
+});
+
+Route::prefix('v1')->group(function () {
+    Route::apiResource('barangs', 'App\Http\Controllers\BarangController');
+});
+
+Route::prefix('v1')->group(function () {
+    Route::apiResource('pemain-timnas', 'App\Http\Controllers\PemainTimnasController');
 });

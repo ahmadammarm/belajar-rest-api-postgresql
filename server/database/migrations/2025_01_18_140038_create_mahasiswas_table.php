@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('jurusan');
-            $table->enum('fakultas', ["FIP", "FS", "FMIPA", "FEB", "FT", "FIK", "FIS", "FPPsi", "FK"]);
-            $table->string('no_hp');
+            $table->integer('angkatan');
+            $table->enum('status', ['Aktif', 'Cuti', 'Lulus']);
+            $table->string('nim')->unique();
             $table->timestamps();
         });
     }
