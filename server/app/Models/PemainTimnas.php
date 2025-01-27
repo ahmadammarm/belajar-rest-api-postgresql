@@ -11,8 +11,13 @@ class PemainTimnas extends Model
 
     protected $table = 'pemain_timnas';
 
+    public function posisi()
+    {
+        return $this->belongsTo(Posisi::class, 'id_posisi');
+    }
+
     protected $keyType = 'string';
 
-    protected $fillable = ['nama', 'nopung', 'klub'];
+    protected $fillable = ['nama', 'klub', 'id_posisi'];
     public $timestamps = false;
 }

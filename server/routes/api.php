@@ -34,3 +34,4 @@ Route::prefix('v1')->group(function () {
 Route::prefix('v1')->group(function () {
     Route::apiResource('pemain-timnas', 'App\Http\Controllers\PemainTimnasController');
 });
+

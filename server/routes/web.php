@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('register', 'App\Http\Controllers\AuthController@register');
+Route::get('/login', function () {
+    return response()->json([
+        'status' => 401,
+        'error' => 'true',
+        'message' => 'Unauthorized'
+    ], Response::HTTP_UNAUTHORIZED);
+})->name('login');
+Route::post('login', 'App\Http\Controllers\AuthController@login');
+Route::post('logout', 'App\Http\Controllers\AuthController@logout');
+Route::get('user', 'App\Http\Controllers\AuthController@user',)->middleware('auth');

@@ -10,44 +10,22 @@ use Illuminate\Http\Response;
 class PemainTimnasController extends Controller
 {
     public function index() {
-        $pemain = PemainTimnas::all();
+        $pemain = PemainTimnas::select('id', 'nama', 'klub')->get();
         return response()->json([
-            'status' => 200,
-            'data' => $pemain
+            "error" => false,
+            "message" => "Success",
+            "status" => 200,
+            "data" => $pemain
         ], Response::HTTP_OK);
     }
 
     public function store(Request $request) {
         $pemain = PemainTimnas::create($request->all());
         return response()->json([
-            'status' => 200,
-            'data' => $pemain
+            "error" => false,
+            "message" => "Pemain created",
+            "status" => 201,
+            "data" => $pemain
         ], Response::HTTP_CREATED);
-    }
-
-    public function show($id) {
-        $pemain = PemainTimnas::find($id);
-        return response()->json([
-            'status' => 200,
-            'data' => $pemain
-        ], Response::HTTP_OK);
-    }
-
-    public function update(Request $request, $id) {
-        $pemain = PemainTimnas::find($id);
-        $pemain->update($request->all());
-        return response()->json([
-            'status' => 200,
-            'data' => $pemain
-        ], Response::HTTP_OK);
-    }
-
-    public function destroy($id) {
-        $pemain = PemainTimnas::find($id);
-        $pemain->delete();
-        return response()->json([
-            'status' => 200,
-            'data' => $pemain
-        ], Response::HTTP_OK);
     }
 }

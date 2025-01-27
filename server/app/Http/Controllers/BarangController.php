@@ -10,8 +10,7 @@ use Illuminate\Http\Response;
 class BarangController extends Controller
 {
     public function index() {
-        $barang = Barang::all();
-        $barang = Barang::orderBy('id')->get();
+        $barang = Barang::select('id', 'nama', 'harga', 'kategori')->orderBy('id')->get();
         return response()->json([
             'status' => 200,
             'data' => $barang

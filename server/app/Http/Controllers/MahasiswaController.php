@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 class MahasiswaController extends Controller
 {
     public function index() {
-        $mahasiswa = Mahasiswa::all();
+        $mahasiswa = Mahasiswa::select('id', 'nama', 'jurusan')->orderBy('id')->get();
         return response()->json([
             'status' => 200,
             'data' => $mahasiswa
@@ -29,7 +29,7 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::create($validated);
 
         return response()->json([
-            'status' => 200,
+            'status' => 201,
             'data' => $mahasiswa
         ], Response::HTTP_CREATED);
     }
